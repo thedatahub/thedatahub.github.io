@@ -1,0 +1,23 @@
+.primary-navigation {
+	margin-bottom: 0;
+	background-color: $navbar-background-color;
+	border-bottom: 1px solid $navbar-border-color;
+	padding: 0.75em 0;
+
+	.navbar-right {
+		margin-top: 15px;
+
+		li > a {
+			transition: color 0.5s ease;
+			color: $navbar-link-color; // #AA0000;
+			padding: 0;
+			margin: 10px 10px;
+			font-weight: 100;
+		}
+
+		li > a:hover {
+			background-color: transparent;
+			color: $navbar-link-color-hover;
+		}
+	}
+}

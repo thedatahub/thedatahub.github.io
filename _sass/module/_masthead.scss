@@ -1,0 +1,10 @@
+.masthead {
+	background-color: $masthead-background-color;
+	text-align: center;
+	margin-bottom: 0;
+
+	h1, h2 {
+		font-weight: 200;
+		color: $masthead-header-color;
+	}
+}

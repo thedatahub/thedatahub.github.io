@@ -1,0 +1,26 @@
+.page-section {
+	h1, h2 {
+		font-weight: 300;
+		margin-bottom: 1em;
+	}
+
+	h3 {
+		font-weight: 400;
+		font-size: 1.25em;
+	}
+}
+
+.page-section-spacious {
+	padding: 3em;
+}
+
+.bg-shade {
+	min-height: 0;
+	border: 1px solid $bg-shade-border-color;
+	background-color: $bg-shade-background-color;
+}
+
+.container-narrow {
+	margin: 0 auto;
+	max-width: 800px;
+}

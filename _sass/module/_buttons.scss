@@ -1,0 +1,31 @@
+.btn {
+	position: relative;
+	display: inline-block;
+	line-height: 1.25;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid #d5d5d5;
+	border-radius: 3px;	
+	font-weight: 400;
+}
+
+.btn-outline-themed {
+	padding: .65em 1.25em;
+	font-size: inherit;
+	color: #20515b;
+	background: transparent;
+	border-color: #20515b;
+	border-radius: .25em; 
+}
+
+.btn-outline-themed:hover, .btn-outline-themed:active {
+    color: #fff;
+    background-color: #20515b;
+    border-color: #20515b; 
+}
+
+.btn-outline-themed:hover,
+.btn-outline-themed:active {
+    background-image: none; 
+}

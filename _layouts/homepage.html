@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	<title>{{ page.title }}</title>
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta name="description" content="The Datahub is an open source metadata aggregator for GLAM organisations.">
+  	<meta name="author" content="{{ page.auhtor}}">
+
+    <!-- Fonts -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
+  	<!-- Custom CSS -->
+	  <link rel="stylesheet" href="/css/style.css">
+  	<!-- Favicons -->
+  </head>
+
+  <body data-spy="scroll">
+
+	{% include header.html %}
+
+	{{ content }}
+
+  {% include footer.html %}
+
+	{% javascript main %}
+  </body>
+</html>
+

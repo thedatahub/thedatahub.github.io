@@ -1,0 +1,33 @@
+body {
+	font-family: $base-font-family;
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+}
+
+a {
+}
+
+a:hover,
+a:active {	
+
+}
+
+a:visited {
+}
+
+hr {
+	margin: 4em 0;
+}
+
+code, pre {
+	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+pre {
+	font: 0.75em;
+}
+
+.text-small {
+	font-size: 0.875em !important;
+}
+
