@@ -1,0 +1,183 @@
+---
+layout: default
+title: Datahub installation
+permalink: /datahub/installation
+---
+
+<div class="subtron text-center">
+	<div class="container-narrow">
+		<h1>The Datahub Documentation</h1>
+
+		<p class="docs-breadcrumbs">
+			<a href="/datahub">Introduction</a> /
+			<a href="/datahub/installation">Installation</a> /
+			<a href="/datahub/usage">Usage</a>
+		</p>
+
+	</div>
+</div>
+
+<section class="page-section strong-headers">
+	<div class="container-narrow">
+
+		<h1>Installation</h1>
+
+		<h2>Before installation</h2>
+
+		<p><strong> The Datahub is a web based application and requires that you 
+		have a web server and a database server.</strong></p>
+
+		<p>For 'local' or 'online' Linux based servers, the software that is 
+		needed to run the Datahub is known as an "AMP" stack, although 
+		Microsoft based servers are also known as a stack.
+
+		<p><strong>AMP</strong> stack stands for</p>
+
+		<ul>
+			<li><strong>A</strong>pache (or another webserver)</li>
+			<li><strong>M</strong>ongoDB</li>
+			<li><strong>P</strong>HP</li>
+		</ul>
+
+		<p>An online web host provides these technologies as part of their 
+		service, or you can install them for free on your Linux, MAC, or 
+		Windows computer.</p>
+
+		<h3>System requirements</h3>
+
+		<p>The Datahub is build with the PHP based web framework Symfony. 
+		Records are stored in a separate database managed by the MongoDB 
+		database system. What do you exactly need to run the software?</p>
+
+		<h4>Disk space</h4>
+
+		<p>A Datahub installation doesn't take a fixed amount of disk space. 
+		The core files of the code typically take around 100 MB on your server. 
+		You will need extra space for your database, log files and backups 
+		though, assuming those reside on the same file system.</p>
+
+		<h4>Web server</h4>
+
+		<p>Symfony based applications can be served using different web server 
+		products. Here's a list of the most widely used options:</p>
+
+		<ul>
+			<li>Nginx (Recommended)</li>
+			<li>Apache</li>
+			<li>Microsoft IIS</li>
+		</ul>
+
+		<h4>PHP</h4>
+
+		<p>The Datahub requires PHP 7.0 or a higher version.</p>
+
+		<p>You wil also need these extra PHP extensions:</p>
+
+		<ul>
+			<li>php-cli, php-intl, php-mbstring and php-mcrypt</li>
+			<li>The PECL Mongo (PHP5) or PECL Mongodb (PHP7) extension. <br />
+			<em>Note that the mongodb extension must be version 1.2.0 or higher. 
+			Notably, the package included in Ubuntu 16.04 (php-mongodb) is only 
+			at 1.1.5.</em></li>
+		</ul>
+
+		<h4>Composer</h4>
+
+		<p>Symfony based applications are managed using <a href="https://getcomposer.org">Composer</a>. This is a dependency management tool for 
+		PHP. You will need it to download third party packages during 
+		installation, and to install updates later on.</p>
+
+		<h4>MongoDB</h4>
+
+		<p>The Datahub requires MongoDB 3.2.10 or a higher version.</p>
+
+		<h2>Step 1: Get the code</h2>
+
+		<p>The most straightforward way of getting the code is downloading the 
+		latest release as a ZIP or TAR ball from Github.</p>
+
+		<p>Alternatively, you can download the code from Packagist with 
+		Composer:</p>
+
+{% highlight bash %}
+$ composer require foo/bar
+{% endhighlight %}
+
+		<p>Clone the Git repository from Github, if you plan development.</p>
+
+{% highlight bash %}
+$ git clone https://github.com/thedatahub/Datahub.git datahub
+{% endhighlight %}	
+
+		<h2>Step 2: Create a database</h2>
+
+		<p>You will also need a MongoDB database. Make sure you have a running 
+		MongoDB database server. Log in into the <a href="https://docs.mongodb.com/getting-started/shell/client/">Mongo Shell</a> as a database 
+		administrator and execute these commands:</p>
+
+{% highlight bash %}
+> use datahub
+> db.createUser(
+   {
+     user: "datahub",
+     pwd: "password",
+     roles: [ "readWrite", "dbAdmin" ]
+   }
+)
+{% endhighlight %}
+
+		<h2>Step 3: Install dependencies with Composer</h2>
+
+		<p>The Datahub application depends on a series of third party code 
+		libraries that need to be downloaded. Go into the directory where you 
+		downloaded the core files, and execute this command:</p>
+
+{% highlight bash %}
+$ composer install
+{% endhighlight %}	
+
+		<p>This will download all the necessary dependencies and store them in
+		a directory called <code>vendor</code>.
+
+		<h2>Step 4: Configure your installation</h2>
+
+		<p>During installation, you will be asked to provide a set of 
+		configuration settings. This includes the details of the connection to 
+		your MongoDB database.</p>
+
+		<ul>
+    		<li>The connection to your MongoDB instance (i.e. mongodb://127.0.0.1:27017)</li>
+    		<li>The username of the user (i.e. datahub)</li>
+    		<li>The password of the user (i.e. password)</li>
+    		<li>The database where your data will persist (i.e. datahub)</li>
+    	</ul>
+
+    	<p>Your settings will be stored in a file called 
+    	<code>app/config/parameters.yml</code>.</p> 
+
+		<h2>Step 5: Up and running</h2>
+
+		<p>Complete the installation by executing these commands which will 
+		setup the application and create an application adminstration user.</p>
+
+{% highlight bash %}
+$ app/console app:setup
+$ app/console doctrine:mongodb:fixtures:load --append
+{% endhighlight %}
+
+		<p>PHP comes with its own web server. This is suitable to just test the 
+		application without going through the setup of a fully fledged web 
+		server. Execute the next command to start the server:</p>
+
+{% highlight bash %}
+$ app/console server:run
+{% endhighlight %}
+
+		<p>Visit <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a>. You 
+		should be greeted by the dashboard welcome screen of the Datahub.</p>
+
+		<p>Refer to the <a href="https://symfony.com/doc/current/setup/web_server_configuration.html">Symfony setup documentation</a> to 
+		complete your installation using a fully featured web server in a 
+		production environment.</p>
+	</div>
+</section>

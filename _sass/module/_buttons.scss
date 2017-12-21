@@ -13,16 +13,16 @@
 .btn-outline-themed {
 	padding: .65em 1.25em;
 	font-size: inherit;
-	color: #20515b;
+	color: $button-text-color;
 	background: transparent;
-	border-color: #20515b;
+	border-color: $button-border-color;
 	border-radius: .25em; 
 }
 
 .btn-outline-themed:hover, .btn-outline-themed:active {
-    color: #fff;
-    background-color: #20515b;
-    border-color: #20515b; 
+    color: $button-hover-text-color;
+    background-color: $button-hover-background-color;
+    border-color: $button-border-color; 
 }
 
 .btn-outline-themed:hover,

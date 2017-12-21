@@ -12,6 +12,7 @@ $pink: #e5837c;
 $white: #ffffff;
 $grey: #f6f8f8;
 $darkgrey: #e0e5e6;
+$darkblue: #20515b;
 
 // Color the elements
 
@@ -32,3 +33,8 @@ $bg-shade-border-color: $darkgrey;
 
 $footer-background-color: $grey;
 $footer-border-color: $darkgrey;
+
+$button-border-color: $darkblue;
+$button-text-color: $darkblue;
+$button-hover-background-color: $darkblue;
+$button-hover-text-color: $white;
