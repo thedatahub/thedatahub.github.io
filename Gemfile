@@ -26,3 +26,4 @@ end
 gem "mini_magick"
 gem "boostrap-sass" # 3.x
 gem "autoprefixer-rails"
+gem "travis"
