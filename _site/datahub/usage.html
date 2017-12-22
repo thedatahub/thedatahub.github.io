@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+  	<meta charset="utf-8">
+  	<title>Datahub installation</title>
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta name="description" content="The Datahub is an open source metadata aggregator for GLAM organisations.">
+  	<meta name="author" content="">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Fonts -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
+  	<!-- Custom CSS -->
+  	<link href="/css/style.css" rel="stylesheet">
+  
+  	<!-- Favicons -->
+  </head>
+
+  <body data-spy="scroll">
+
+	<!-- Fixed navbar -->
+<nav class="navbar navbar-static-top primary-navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img src="/assets/images/datahub_small.png" width="207" height="67" alt="images/datahub_small.png">
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active">
+          <a href="/datahub">The Datahub</a>
+        </li>
+        <li>
+          <a href="#">The Datahub Factory</a>
+        </li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+	<div class="subtron text-center">
+	<div class="container-narrow">
+		<h1>The Datahub Documentation</h1>
+
+		<p class="docs-breadcrumbs">
+			<a href="/datahub">Introduction</a> /
+			<a href="/datahub/installation">Installation</a> /
+			<a href="/datahub/usage">Usage</a>
+		</p>
+
+	</div>
+</div>
+
+<section class="page-section strong-headers">
+	<div class="container-narrow">
+
+	<h1>Usage</h1>
+
+	<h2>The Dashboard</h2>
+
+	<p>When you surf to your Datahub installation, you will land on the 
+	Dashboard of the application. The Dashboard displays the number of records
+	currently stored in the installation and links to the technical documentation 
+	of the API's.</p>
+
+	<p>A Datahub installation has a name which is prominently featured on the 
+	Dashboard and can be configured in <code>app/config/parameters.yml</code>.</p>
+
+	<p>The Dashboard also displays a link to the website of the organisation or 
+	individual who manages the installation and a contact e-mail address.</p>
+
+	<h2>Administration</h2>
+
+	<h3>Logging in</h3>
+
+	<p>During installation, a 'administrator' user was created with the 
+	username <code>admin</code> and the default password <code>datahub</code>.
+	When you surf to <code>/login</code>, you will be presented with a login 
+	form. Use these default credentials as you log in for the first time.</p>
+
+	<p>You need to manually change the password to secure your installation.</p>
+
+	<ol>
+		<li>Click on the 'Users' link in the main menu</li>
+		<li>Click on the 'Users' link in the 'Navigation' sidebar.</li>
+		<li>A table of registered users with just the 'admin' 
+		entry is displayed.</li>
+		<li>Click on the 'view' action button in the 'admin' entry row.</li>
+		<li>The account details of the admin user are now displays.</li>
+		<li>Click on the 'Edit' button to edit the account.</li>
+		<li>Enter a new password to change the password.</li>
+		<li>Click on 'submit' to save the new passowrd.</li>
+	</ol>
+
+	<h3>Managing users</h3>
+
+	<p>To be written.</p>
+
+	<h3>Managing clients</h3>
+
+	<p>To be written.</p>
+
+	<h2>The REST API</h2>
+
+	<h2>The OAI-PMH endpoint</h2>
+
+	<h2>Access control</h2>
+
+	</div>
+</section>
+
+  <footer class="footer">
+	<nav class="navbar">
+		<div class="container">
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-left">
+					<li>Lorem</li>
+					<li>Ipsum</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</footer>
+
+
+	<script type="text/javascript" src="/assets/javascripts/main.js"></script>
+  </body>
+</html>
+
