@@ -21,9 +21,8 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   local_dir: _site
-  target_branch: master
   on:
-    branch: gh-pages
+    branch: master
 
 env:
   matrix:
