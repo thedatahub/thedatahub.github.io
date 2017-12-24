@@ -6,24 +6,3 @@ markdown: kramdown
 highlighter: rouge
 plugins:
   - jekyll-feed
-
-#########################
-# Plugin: jekyll-assets #
-#########################
-
-# Assets Pipeline
-assets:
-  autoprefixer:
-    browsers:
-    - "last 2 versions"
-    - "IE > 9"
-  sources:
-    - _assets
-    - _assets/images
-    - _assets/javascripts
-    - _assets/stylesheets
-    - _assets/fonts
-
-  # Disable asset gzip
-  gzip: false
-
