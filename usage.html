@@ -24,9 +24,95 @@ permalink: /datahub/usage
 
 	<h2>The REST API</h2>
 
+	<p>The REST API is available at <code>api/v1/data</code>. Documentation about the available API methods can be found at <code>/docs/api</code>.</p>
+
+	<h3>POST and PUT actions</h3>
+
+	<p>The PUT and POST actions expect and XML formatted body in the HTTP request. The Content-Type HTTP request header also needs to be set accordingly. Currently, supported: application/lido+xml. Finally, you will need to add a valid OAuth token via the access_token query parameter.</p>
+
+	<p>A valid POST HTTP request looks like this:</p>
+
+	{% highlight xml %}
+POST /api/v1/data?access_token=MThmYWMxMjFlZWZmYjVmZDU2NDNmZWIzYTE0YmNiYTk3YTc5ODJmMWJjOGI1MjE5MWY4ZjEyZWZlZmM2ZmZmNg HTTP/1.1
+Host: example.org
+Content-Type: application/lido+xml
+Cache-Control: no-cache
+
+<?xml version="1.0" encoding="UTF-8"?>
+<lido:lido xmlns:lido="http://www.lido-schema.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.lido-schema.org http://www.lido-schema.org/schema/v1.0/lido-v1.0.xsd">
+	<lido:lidoRecID lido:source="Deutsches Dokumentationszentrum für Kunstgeschichte - Bildarchiv Foto Marburg" lido:type="local">DE-Mb112/lido-obj00154983</lido:lidoRecID>
+	<lido:category>
+...
+{% endhighlight %}
+
+	<h3>GET actions</h3>
+
+	<p>Sending a GET HTTP request to the <code>api/v1/data</code> endpoint will return a paginated list of all the records available in the API. The endpoint will return a HTTP response with a JSON formatted body. The endpoint respects the <a href="https://en.wikipedia.org/wiki/HATEOAS">HATEOAS</a> constraint.</p>
+
+	<p>Content negotation is currently only supported via a file extension on individual resource URL's.</p>
+
+	{% highlight bash %}
+GET api/v1/data               # only JSON supported
+GET api/v1/data/objectPID     # return JSON
+GET api/v1/data/objectPID.xml # return XML
+	{% endhighlight %}
+
 	<h2>The OAI-PMH endpoint</h2>
 
-	<h2>Access control</h2>
+	<p>The datahub supports the <a href="https://www.openarchives.org/pmh/">OAI-PMH</a> protocol. The endpoint is available via the <code>/oai</code> path.</p>
+
+	{% highlight bash %}
+GET oai/?metadataPrefix=oai_lido&verb=ListIdentifiers
+GET oai/?metadataPrefix=oai_lido&verb=ListRecords
+GET oai/?metadataPrefix=oai_lid&verb=GetRecord&identifier=objectPID
+GET oai/?metadataPrefix=oai_lid&verb=GetRecord&identifier=objectPID
+GET oai/?metadataPrefix=oai_lido&verb=ListIdentifiers&from=2017-06-29T05:22:30Z&until=2017-07-14T04:22:30Z
+	{% endhighlight %}
+
+	<p>The datahub doesn't implement grouping of records nor soft deletes. As such, the OAI endpoint doesn't OAI sets and indicating whether a record has been deleted.</p>
+
+	<h2>Access control via OAuth</h2>
+
+	<p>The datahub API can be set up to be either a public or a private API. The <code>public_api_method_access</code> parameter in the <code>parameters.yml</code> configuration file allows you to configure which parts of the API are public or private:</p>
+
+	{% highlight bash %}
+# Setting this to some unknown value like [FOO] disables public api access
+# Leaving this option empty [] means allowing all methods for anonymous access
+# public_api_method_access: [FOO]
+public_api_method_access: [GET]
+    {% endhighlight %}
+
+<p>The datahub requires OAuth authentication to ingest or retrieve metadata records. The administrator has to issue a user account with a client_id and a client_secret to individual Users or client applications. Before clients can access the API, they have to request an access token:</p>
+
+	{% highlight bash %}
+curl 'http://localhost:8000/oauth/v2/token?grant_type=password&username=admin&password=datahub&client_id=slightlylesssecretpublicid&client_secret=supersecretsecretphrase'
+    {% endhighlight %}
+
+	<p>Example output:</p>
+
+	{% highlight json %}
+{
+    "access_token": "ZDIyMGFiZGZkZWUzY2FjMmY4YzNmYjU0ODZmYmQ2ZGM0NjZiZjBhM2Q0Y2ZjMGNiMjc0ZWIyMmYyODMzMGJjZg",
+    "expires_in": 3600,
+    "token_type": "bearer",
+    "scope": "internal web external",
+    "refresh_token":  "MzhkYzY0MzMxM2FmNmQyODhiOWM4YzEzZjI3YzViZjg3ZThlMTA2YWY4ZTc2YjUwYzgxNzVhNTlmYTBkYWZhNQ"
+}
+    {% endhighlight %}
+
+    <p>The endpoint can also be used to revoke both access and refresh tokens.</p>
+
+	{% highlight bash %}
+ curl 'http://localhost:8000/oauth/v2/revoke?token=ZDIyMGFiZGZkZWUzY2FjMmY4YzNmYjU0ODZmYmQ2ZGM0NjZiZjBhM2Q0Y2ZjMGNiMjc0ZWIyMmYyODMzMGJjZg'
+    {% endhighlight %}
+
+    <p>Example output:</p>
+	{% highlight json %}
+{
+    "result": "success",
+    "message": "The token has been revoked."
+}
+    {% endhighlight %}
 
 	<h2>The Dashboard</h2>
 
